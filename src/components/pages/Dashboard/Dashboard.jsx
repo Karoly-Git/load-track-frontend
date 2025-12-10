@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from '../../ui/button/Button';
 import { GoPlus as PlusIcon } from "react-icons/go";
 
-import AddLorryModal from "../../ui/modal/AddLorryModal";
+import Modal from "../../ui/modal/Modal";
 import AddLorryForm from "../../forms/AddLorryForm/AddLorryForm";
 
 import "./Dashboard.css";
@@ -33,9 +33,9 @@ export default function Dashboard() {
                 />
             </div>
 
-            <AddLorryModal isOpen={isModalOpen} onClose={handleClose}>
+            <Modal isOpen={isModalOpen} onClose={handleClose}>
                 <AddLorryForm onSubmit={handleFormSubmit} />
-            </AddLorryModal>
+            </Modal>
         </div>
     );
 }

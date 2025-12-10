@@ -1,6 +1,6 @@
-import "./AddLorryModal.css";
+import "./Modal.css";
 
-export default function AddLorryModal({ isOpen, onClose, children }) {
+export default function Modal({ isOpen, onClose, children }) {
     if (!isOpen) return null;
 
     return (
