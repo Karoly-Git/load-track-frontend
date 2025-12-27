@@ -7,6 +7,9 @@ const swaggerSpec = require("./swagger");
 
 const app = express();
 
+// Helps rate-limit and IP handling
+app.set("trust proxy", 1);
+
 // Middleware
 app.use(express.json());
 
@@ -32,6 +35,9 @@ app.get("/", (req, res) => {
         }
     );
 });
+
+// Health check
+app.get("/health", (req, res) => res.json({ status: "ok" }));
 
 // Swagger docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
