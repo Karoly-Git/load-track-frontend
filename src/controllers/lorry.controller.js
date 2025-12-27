@@ -149,9 +149,40 @@ const updateLorryStatus = (req, res) => {
         updatedBy
     });
 
-    //Respond with updated lorry
+    // Send respond
     res.status(200).json(data);
     //res.status(200).json(lorry);
 };
 
-module.exports = { getAllLorries, getLorryById, getLorryStatusHistory, addLorry, updateLorryStatus };
+const deleteLorry = (req, res) => {
+    const { id } = req.params;
+
+    if (!id) {
+        return res.status(400).json({
+            message: "Missing lorry id",
+        });
+    }
+
+    const index = data.findIndex(el => el.lorryId === id);
+
+    if (index === -1) {
+        return res.status(404).json({
+            message: `Lorry with id ${id} not found`,
+        });
+    }
+
+    const deletedLorry = data.splice(index, 1)[0];
+    const newData = data.filter(el => el.lorryId !== id);
+
+    //res.status(200).json(deletedLorry);
+    res.status(200).json(newData);
+};
+
+module.exports = {
+    getAllLorries,
+    getLorryById,
+    getLorryStatusHistory,
+    addLorry,
+    updateLorryStatus,
+    deleteLorry,
+};
