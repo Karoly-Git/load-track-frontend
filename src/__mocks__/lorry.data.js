@@ -3,7 +3,7 @@ const LORRY_STATUS_ENUM = require("./lorry-status.enum");
 const lorryTrackData = [
     {
         lorryId: "1",
-        refNum: "vg123sd",
+        collectionRefNum: "vg123sd",
         regNum: "pz65pwo",
 
         checkedInAt: "2025-12-27T08:40:00Z",
@@ -25,7 +25,7 @@ const lorryTrackData = [
 
     {
         lorryId: "2",
-        refNum: "ab456xy",
+        collectionRefNum: "ab456xy",
         regNum: "lm12abc",
 
         checkedInAt: "2025-12-27T08:55:00Z",
@@ -56,7 +56,7 @@ const lorryTrackData = [
 
     {
         lorryId: "3",
-        refNum: "cd789ef",
+        collectionRefNum: "cd789ef",
         regNum: "qr34def",
 
         checkedInAt: "2025-12-27T07:50:00Z",
@@ -96,7 +96,7 @@ const lorryTrackData = [
 
     {
         lorryId: "4",
-        refNum: "gh012ij",
+        collectionRefNum: "gh012ij",
         regNum: "st56ghi",
 
         checkedInAt: "2025-12-27T06:45:00Z",

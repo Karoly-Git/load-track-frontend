@@ -381,7 +381,7 @@ const options = {
                             "type": "string",
                             "example": "1"
                         },
-                        "refNum": {
+                        "collectionRefNum": {
                             "type": "string",
                             "example": "vg123sd"
                         },
@@ -439,11 +439,11 @@ const options = {
                 "LorryCheckInRequest": {
                     "type": "object",
                     "required": [
-                        "refNum",
+                        "collectionRefNum",
                         "regNum"
                     ],
                     "properties": {
-                        "refNum": {
+                        "collectionRefNum": {
                             "type": "string",
                             "example": "ab456xy"
                         },

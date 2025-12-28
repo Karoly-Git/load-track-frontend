@@ -46,10 +46,10 @@ const getLorryStatusHistory = (req, res) => {
 };
 
 const addLorry = (req, res) => {
-    const { refNum, regNum, updatedBy } = req.body;
+    const { collectionRefNum, regNum, updatedBy } = req.body;
 
     if (
-        !refNum ||
+        !collectionRefNum ||
         !regNum ||
         !updatedBy?.userId ||
         !updatedBy?.name ||
@@ -69,7 +69,7 @@ const addLorry = (req, res) => {
 
     const newLorry = {
         lorryId: newId,
-        refNum,
+        collectionRefNum,
         regNum,
         checkedInAt: timestamp,
         checkedOutAt: null,
@@ -160,34 +160,23 @@ const updateLorryStatus = (req, res) => {
     return res.status(200).json(lorry);
 };
 
-const updateRefNum = (req, res) => {
-    // Read lorry id from URL params
+const updateCollectionRefNum = (req, res) => {
+    // Read lorry's id and collection's reference number from URL params
     const { id } = req.params;
+    const { collectionRefNum } = req.body;
 
-    // Read status update payload from request body
-    const { status, updatedBy } = req.body;
 
-    // Collect names of any missing required fields
+    // Collect any missing required params
     const missingFields = [];
 
-    // Validate presence of required fields
+    // Validate presence of required params
     if (!id) missingFields.push("id");
-    if (!status) missingFields.push("status");
-    if (!updatedBy?.userId) missingFields.push("updatedBy.userId");
-    if (!updatedBy?.name) missingFields.push("updatedBy.name");
-    if (!updatedBy?.role) missingFields.push("updatedBy.role");
+    if (!collectionRefNum) missingFields.push("collectionRefNum");
 
-    // Reject request if any required fields are missing
+    // Reject request if any required params are missing
     if (missingFields.length) {
         return res.status(400).json({
-            message: `Missing required fields: '${missingFields.join(", ")}'`,
-        });
-    }
-
-    // Ensure status value is a valid enum entry
-    if (!Object.values(LORRY_STATUS_ENUM).includes(status)) {
-        return res.status(400).json({
-            message: "Invalid status value",
+            message: `Missing required param(s): '${missingFields.join(", ")}'`,
         });
     }
 
@@ -201,34 +190,38 @@ const updateRefNum = (req, res) => {
         });
     }
 
-    // Prevent applying the same status more than once
-    if (
-        lorry.currentStatus === status ||
-        lorry.statusHistory.some(el => el.status === status)
-    ) {
-        return res.status(409).json({
-            message: `Status '${status}' has already been applied to this lorry`,
+    // Update the collection’s reference number
+    lorry.collectionRefNum = collectionRefNum;
+
+    // Return the updated lorry record
+    return res.status(200).json(lorry);
+};
+
+const updateRegNum = (req, res) => {
+    const { id } = req.params;
+    const { regNum } = req.body;
+
+    const missingFields = [];
+
+    if (!id) missingFields.push("id");
+    if (!regNum) missingFields.push("regNum");
+
+    if (missingFields.length) {
+        return res.status(400).json({
+            message: `Missing required param(s): '${missingFields.join(", ")}'`,
         });
     }
 
-    // Create timestamp for the status change
-    const timestamp = new Date().toISOString();
+    const lorry = data.find(el => el.lorryId === id);
 
-    // Update the lorry’s current status
-    lorry.currentStatus = status;
-
-    if (status === LORRY_STATUS_ENUM.CHECKED_OUT) {
-        lorry.checkedOutAt = timestamp;
+    if (!lorry) {
+        return res.status(404).json({
+            message: `Lorry with id '${id}' not found`,
+        });
     }
 
-    // Append the new status entry to history
-    lorry.statusHistory.push({
-        status,
-        timestamp,
-        updatedBy,
-    });
+    lorry.regNum = regNum;
 
-    // Return the updated lorry record
     return res.status(200).json(lorry);
 };
 
@@ -263,5 +256,7 @@ module.exports = {
     getLorryStatusHistory,
     addLorry,
     updateLorryStatus,
+    updateCollectionRefNum,
+    updateRegNum,
     deleteLorry,
 };

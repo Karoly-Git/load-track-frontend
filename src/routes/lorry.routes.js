@@ -7,6 +7,8 @@ const {
     getLorryStatusHistory,
     addLorry,
     updateLorryStatus,
+    updateCollectionRefNum,
+    updateRegNum,
     deleteLorry
 } = require("../controllers/lorry.controller");
 
@@ -20,8 +22,8 @@ router.get("/:id/history", getLorryStatusHistory);
 
 // Update
 router.put("/:id/update-status", updateLorryStatus);
-router.put("/:id/update-refnum", () => { return });
-router.put("/:id/update-regnum", () => { return });
+router.put("/:id/update-collection-reference-number", updateCollectionRefNum);
+router.put("/:id/update-registration-number", updateRegNum);
 
 // Delete
 router.delete("/:id", deleteLorry);
