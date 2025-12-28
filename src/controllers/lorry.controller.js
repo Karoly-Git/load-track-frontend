@@ -50,7 +50,6 @@ const addLorry = (req, res) => {
 
     const missingFields = [];
 
-    if (!id) missingFields.push("id");
     if (!collectionRefNum) missingFields.push("collectionRefNum");
     if (!regNum) missingFields.push("regNum");
     if (!updatedBy.userId) missingFields.push("updatedBy.userId");
