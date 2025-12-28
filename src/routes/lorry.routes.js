@@ -19,7 +19,7 @@ router.get("/:id", getLorryById);
 router.get("/:id/history", getLorryStatusHistory);
 
 // Update
-router.put("/:id", updateLorryStatus);
+router.put("/:id/update-status", updateLorryStatus);
 
 // Delete
 router.delete("/:id", deleteLorry);

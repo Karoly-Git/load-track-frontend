@@ -20,7 +20,7 @@ const getLorryById = (req, res) => {
 
     if (!lorry) {
         return res.status(404).json({
-            message: `Lorry with id ${id} not found`,
+            message: `Lorry with id '${id}' not found`,
         });
     }
 
@@ -38,7 +38,7 @@ const getLorryStatusHistory = (req, res) => {
 
     if (!lorry) {
         return res.status(404).json({
-            message: `Lorry with id ${id} not found`,
+            message: `Lorry with id '${id}' not found`,
         });
     }
 
@@ -89,63 +89,71 @@ const addLorry = (req, res) => {
 
 
 const updateLorryStatus = (req, res) => {
-    const { lorryId, status, updatedBy } = req.body;
+    // Read lorry id from URL params
+    const { id } = req.params;
 
-    //might add a logic on which status can be added depending on the current status: 
-    //however, might be handled at the frontend
+    // Read status update payload from request body
+    const { status, updatedBy } = req.body;
 
-    // Required fields check
-    if (!lorryId || !status || !updatedBy) {
+    // Collect names of any missing required fields
+    const missingFields = [];
+
+    // Validate presence of required fields
+    if (!id) missingFields.push("id");
+    if (!status) missingFields.push("status");
+    if (!updatedBy?.userId) missingFields.push("updatedBy.userId");
+    if (!updatedBy?.name) missingFields.push("updatedBy.name");
+    if (!updatedBy?.role) missingFields.push("updatedBy.role");
+
+    // Reject request if any required fields are missing
+    if (missingFields.length) {
         return res.status(400).json({
-            message: "Missing required body fields",
+            message: `Missing required fields: ${missingFields.join(", ")}`,
         });
     }
 
-    // Status validation check
+    // Ensure status value is a valid enum entry
     if (!Object.values(LORRY_STATUS_ENUM).includes(status)) {
         return res.status(400).json({
             message: "Invalid status value",
         });
     }
 
-    // Object updatedBy validation
-    const { userId, name, role } = updatedBy;
+    // Look up the lorry by id
+    const lorry = data.find(el => el.lorryId === id);
 
-    if (!userId || !name || !role) {
-        return res.status(400).json({
-            message: "The object of 'updatedBy' must include userId, name, and role",
-        });
-    }
-
-    // Find lorry
-    const lorry = data.find(el => el.lorryId === lorryId);
-
+    // Reject if the lorry does not exist
     if (!lorry) {
         return res.status(404).json({
-            message: `Lorry with id ${lorryId} not found`,
+            message: `Lorry with id '${id}' not found`,
         });
     }
 
-    // Duplicated status check
-    if (lorry.statusHistory.some(el => el.status === status)) {
+    // Prevent applying the same status more than once
+    if (
+        lorry.currentStatus === status ||
+        lorry.statusHistory.some(el => el.status === status)
+    ) {
         return res.status(409).json({
-            message: `Status '${status}' already exists in the lorry history`,
+            message: `Status '${status}' has already been applied to this lorry`,
         });
     }
 
-    // Update status
+    // Create timestamp for the status change
     const timestamp = new Date().toISOString();
 
+    // Update the lorry’s current status
     lorry.currentStatus = status;
+
+    // Append the new status entry to history
     lorry.statusHistory.push({
         status,
         timestamp,
-        updatedBy
+        updatedBy,
     });
 
-    // Send respond
-    res.status(200).json(data);
-    //res.status(200).json(lorry);
+    // Return the updated lorry record
+    return res.status(200).json(lorry);
 };
 
 const deleteLorry = (req, res) => {
@@ -161,7 +169,7 @@ const deleteLorry = (req, res) => {
 
     if (index === -1) {
         return res.status(404).json({
-            message: `Lorry with id ${id} not found`,
+            message: `Lorry with id '${id}' not found`,
         });
     }
 
