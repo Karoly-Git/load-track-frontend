@@ -1,8 +1,8 @@
-const LORRY_STATUS = {
+const LORRY_STATUS_ENUM = {
     CHECKED_IN: "CHECKED_IN",
-    LOADING: "LOADING",
+    LOADING: "LOADING_IN_PROGRESS",
     LOADED: "LOADED",
     CHECKED_OUT: "CHECKED_OUT"
 };
 
-module.exports = LORRY_STATUS;
+module.exports = LORRY_STATUS_ENUM;

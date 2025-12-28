@@ -1,4 +1,4 @@
-const LORRY_STATUS = require("./lorry-status.enum");
+const LORRY_STATUS_ENUM = require("./lorry-status.enum");
 
 const lorryTrackData = [
     {
@@ -8,11 +8,11 @@ const lorryTrackData = [
 
         checkedInAt: "2025-12-27T08:40:00Z",
         checkedOutAt: null,
-        currentStatus: LORRY_STATUS.CHECKED_IN,
+        currentStatus: LORRY_STATUS_ENUM.CHECKED_IN,
 
         statusHistory: [
             {
-                status: LORRY_STATUS.CHECKED_IN,
+                status: LORRY_STATUS_ENUM.CHECKED_IN,
                 timestamp: "2025-12-27T08:40:00Z",
                 updatedBy: {
                     userId: "u-002",
@@ -30,11 +30,11 @@ const lorryTrackData = [
 
         checkedInAt: "2025-12-27T08:55:00Z",
         checkedOutAt: null,
-        currentStatus: LORRY_STATUS.LOADING,
+        currentStatus: LORRY_STATUS_ENUM.LOADING,
 
         statusHistory: [
             {
-                status: LORRY_STATUS.CHECKED_IN,
+                status: LORRY_STATUS_ENUM.CHECKED_IN,
                 timestamp: "2025-12-27T08:55:00Z",
                 updatedBy: {
                     userId: "u-002",
@@ -43,7 +43,7 @@ const lorryTrackData = [
                 }
             },
             {
-                status: LORRY_STATUS.LOADING,
+                status: LORRY_STATUS_ENUM.LOADING,
                 timestamp: "2025-12-27T09:10:00Z",
                 updatedBy: {
                     userId: "u-003",
@@ -61,11 +61,11 @@ const lorryTrackData = [
 
         checkedInAt: "2025-12-27T07:50:00Z",
         checkedOutAt: null,
-        currentStatus: LORRY_STATUS.LOADED,
+        currentStatus: LORRY_STATUS_ENUM.LOADED,
 
         statusHistory: [
             {
-                status: LORRY_STATUS.CHECKED_IN,
+                status: LORRY_STATUS_ENUM.CHECKED_IN,
                 timestamp: "2025-12-27T07:50:00Z",
                 updatedBy: {
                     userId: "u-002",
@@ -74,7 +74,7 @@ const lorryTrackData = [
                 }
             },
             {
-                status: LORRY_STATUS.LOADING,
+                status: LORRY_STATUS_ENUM.LOADING,
                 timestamp: "2025-12-27T08:05:00Z",
                 updatedBy: {
                     userId: "u-003",
@@ -83,7 +83,7 @@ const lorryTrackData = [
                 }
             },
             {
-                status: LORRY_STATUS.LOADED,
+                status: LORRY_STATUS_ENUM.LOADED,
                 timestamp: "2025-12-27T09:00:00Z",
                 updatedBy: {
                     userId: "u-003",
@@ -101,11 +101,11 @@ const lorryTrackData = [
 
         checkedInAt: "2025-12-27T06:45:00Z",
         checkedOutAt: "2025-12-27T08:30:00Z",
-        currentStatus: LORRY_STATUS.CHECKED_OUT,
+        currentStatus: LORRY_STATUS_ENUM.CHECKED_OUT,
 
         statusHistory: [
             {
-                status: LORRY_STATUS.CHECKED_IN,
+                status: LORRY_STATUS_ENUM.CHECKED_IN,
                 timestamp: "2025-12-27T06:45:00Z",
                 updatedBy: {
                     userId: "u-002",
@@ -114,7 +114,7 @@ const lorryTrackData = [
                 }
             },
             {
-                status: LORRY_STATUS.LOADING,
+                status: LORRY_STATUS_ENUM.LOADING,
                 timestamp: "2025-12-27T07:00:00Z",
                 updatedBy: {
                     userId: "u-004",
@@ -123,7 +123,7 @@ const lorryTrackData = [
                 }
             },
             {
-                status: LORRY_STATUS.LOADED,
+                status: LORRY_STATUS_ENUM.LOADED,
                 timestamp: "2025-12-27T07:55:00Z",
                 updatedBy: {
                     userId: "u-004",
@@ -132,7 +132,7 @@ const lorryTrackData = [
                 }
             },
             {
-                status: LORRY_STATUS.CHECKED_OUT,
+                status: LORRY_STATUS_ENUM.CHECKED_OUT,
                 timestamp: "2025-12-27T08:30:00Z",
                 updatedBy: {
                     userId: "u-002",

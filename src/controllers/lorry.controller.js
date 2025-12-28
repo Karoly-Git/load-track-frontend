@@ -1,4 +1,4 @@
-const { request } = require("../../app");
+const LORRY_STATUS_ENUM = require("../__mocks__/lorry-status.enum");
 const data = require("../__mocks__/lorry.data");
 
 const getAllLorries = (req, res) => {
@@ -70,10 +70,10 @@ const addLorry = (req, res) => {
         registration,
         checkedInAt: timestamp,
         checkedOutAt: null,
-        currentStatus: "CHECKED_IN",
+        currentStatus: LORRY_STATUS_ENUM.CHECKED_IN,
         statusHistory: [
             {
-                status: "CHECKED_IN",
+                status: LORRY_STATUS_ENUM.CHECKED_IN,
                 timestamp,
                 updatedBy
             }
@@ -90,13 +90,6 @@ const addLorry = (req, res) => {
 const updateLorryStatus = (req, res) => {
     const { lorryId, status, updatedBy } = req.body;
 
-    const ALLOWED_STATUSES = [
-        "CHECKED_IN",
-        "LOADING",
-        "LOADED",
-        "CHECKED_OUT"
-    ];
-
     //might add a logic on which status can be added depending on the current status: 
     //however, might be handled at the frontend
 
@@ -107,19 +100,19 @@ const updateLorryStatus = (req, res) => {
         });
     }
 
-    // Status validation
-    if (!ALLOWED_STATUSES.includes(status)) {
+    // Status validation check
+    if (!Object.values(LORRY_STATUS_ENUM).includes(status)) {
         return res.status(400).json({
             message: "Invalid status value",
         });
     }
 
-    // UpdatedBy validation
+    // Object updatedBy validation
     const { userId, name, role } = updatedBy;
 
     if (!userId || !name || !role) {
         return res.status(400).json({
-            message: "updatedBy must include userId, name, and role",
+            message: "The object of 'updatedBy' must include userId, name, and role",
         });
     }
 
