@@ -1,0 +1,30 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    margin-top: 1rem;
+
+    thead {
+        tr {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            padding: 14px 16px;
+            text-align: left;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #111827;
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid #edf0f4;
+
+            &:hover {
+                background-color: #f9fafb;
+            }
+        }
+    }
+}

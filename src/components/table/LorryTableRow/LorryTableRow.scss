@@ -1,0 +1,15 @@
+.lorry-table-row {
+    td {
+        padding: 1rem;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+
+    .material-name {
+        font-weight: bold;
+    }
+
+    .collection-ref-number {
+        text-transform: uppercase;
+    }
+}

@@ -1,0 +1,11 @@
+.lorry-table-row td {
+  padding: 1rem;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.lorry-table-row .material-name {
+  font-weight: bold;
+}
+.lorry-table-row .collection-ref-number {
+  text-transform: uppercase;
+}/*# sourceMappingURL=LorryTableRow.css.map */

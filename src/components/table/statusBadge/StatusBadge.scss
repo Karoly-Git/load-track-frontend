@@ -1,0 +1,34 @@
+.current-status {
+    padding: 16px;
+
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 14px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        text-transform: capitalize;
+
+        &.checked_in {
+            background-color: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        &.loading_in_progress {
+            background-color: #fde3c2;
+            color: #92400e;
+        }
+
+        &.loaded {
+            background-color: #d1fadf;
+            color: #166534;
+        }
+
+        &.checked_out {
+            background-color: #e5e7eb;
+            color: #374151;
+        }
+    }
+}

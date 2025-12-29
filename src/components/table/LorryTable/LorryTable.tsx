@@ -3,6 +3,8 @@ import getAllLorries from "../../../api/lorries.api";
 import LorryTableRow from "../LorryTableRow/LorryTableRow";
 import type { Lorry } from "../../../types/lorry";
 
+import "./LorryTable.css";
+
 export default function LorryTable() {
     const [data, setData] = useState<Lorry[]>([]);
     const [loading, setLoading] = useState(true);

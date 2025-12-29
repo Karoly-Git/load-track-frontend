@@ -1,20 +1,24 @@
 import type { Lorry } from "../../../types/lorry";
-import { useState } from "react";
+
+import "./StatusBadge.css";
 
 interface StatusBadgeProps {
     currentStatus: Lorry["currentStatus"];
 }
 
 export default function StatusBadge({ currentStatus }: StatusBadgeProps) {
-    const formatedBadgeText = (value: string): string =>
-        value
-            .toLowerCase()
-            .split("_")
-            .join(" ");
+    const formattedText = currentStatus
+        .toLowerCase()
+        .split("_")
+        .join(" ");
+
+    const statusClass = currentStatus.toLowerCase();
 
     return (
         <td className="current-status">
-            <span className="status-badge">{formatedBadgeText(currentStatus)}</span>
+            <span className={`status-badge ${statusClass}`}>
+                {formattedText}
+            </span>
         </td>
     );
 }

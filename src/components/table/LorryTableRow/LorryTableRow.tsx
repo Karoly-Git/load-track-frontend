@@ -1,6 +1,8 @@
 import StatusBadge from "../statusBadge/StatusBadge";
 import type { Lorry } from "../../../types/lorry";
 
+import "./LorryTableRow.css";
+
 interface LorryTableRowProps {
     lorry: Lorry;
 }
