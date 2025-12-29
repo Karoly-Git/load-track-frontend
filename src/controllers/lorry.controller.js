@@ -1,7 +1,9 @@
 const LORRY_STATUS_ENUM = require("../constants/lorry-statuses");
 const data = require("../__mocks__/lorry.data");
 
-// Add new collection
+/**
+ * Add new lorry
+ */
 const addLorry = (req, res) => {
     const { regNum, materialName, customerName, collectionRefNum, updatedBy, comment } = req.body;
 
@@ -59,7 +61,9 @@ const addLorry = (req, res) => {
     return res.status(200).json({ message: "Lorry added successfully.", newLorry });
 };
 
-// Get all collections
+/**
+ * Get all lorries
+ */
 const getAllLorries = (req, res) => {
     try {
         res.status(200).json(data);
@@ -68,7 +72,9 @@ const getAllLorries = (req, res) => {
     }
 };
 
-// Get a collection by ID
+/**
+ * Get a lorry
+ */
 const getLorryById = (req, res) => {
     const { id } = req.params;
 
@@ -87,7 +93,9 @@ const getLorryById = (req, res) => {
     res.status(200).json(lorry);
 };
 
-// Get collection status history by ID
+/**
+ * Get lorry status history
+ */
 const getLorryStatusHistory = (req, res) => {
     const { id } = req.params;
 
@@ -106,7 +114,9 @@ const getLorryStatusHistory = (req, res) => {
     res.status(200).json(lorry.statusHistory);
 };
 
-// Update lorry registration number
+/**
+ * Update lorry registration number
+ */
 const updateRegNum = (req, res) => {
     const { id } = req.params;
     const { regNum } = req.body;
@@ -135,7 +145,9 @@ const updateRegNum = (req, res) => {
     return res.status(200).json({ message: "Lorry registration number updated successfully.", lorry });
 };
 
-// Update the name of the collected material
+/**
+ * Update the collected material name
+ */
 const updateMaterialName = (req, res) => {
     const { id } = req.params;
     const { materialName } = req.body;
@@ -153,7 +165,9 @@ const updateMaterialName = (req, res) => {
     return res.status(200).json({ message: "Material name updated successfully.", lorry });
 };
 
-// Update the customer name of the collection
+/**
+ * Update the customer name
+ */
 const updateCustomerName = (req, res) => {
     const { id } = req.params;
     const { customerName } = req.body;
@@ -171,7 +185,9 @@ const updateCustomerName = (req, res) => {
     return res.status(200).json({ message: "Customer name updated successfully.", lorry });
 };
 
-// Update collection referene number
+/**
+ * Update the reference number
+ */
 const updateCollectionRefNum = (req, res) => {
     // Read lorry's id and collection's reference number from URL params
     const { id } = req.params;
@@ -209,7 +225,9 @@ const updateCollectionRefNum = (req, res) => {
     return res.status(200).json({ message: "Collection reference number updated successfully.", lorry });
 };
 
-// Update collection status
+/**
+ * Update lorry status
+ */
 const updateLorryStatus = (req, res) => {
     // Read lorry id from URL params
     const { id } = req.params;
@@ -292,7 +310,9 @@ const updateLorryStatus = (req, res) => {
     return res.status(200).json({ message: "Lorry status updated successfully.", lorry });
 };
 
-// Delete collection
+/**
+ * Delete a lorry
+ */
 const deleteLorry = (req, res) => {
     const { id } = req.params;
 

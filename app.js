@@ -6,6 +6,7 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./swagger");
 
 const lorryRoutes = require("./src/routes/lorry.routes");
+const commentRoutes = require("./src/routes/comment.routes");
 
 const app = express();
 
@@ -45,5 +46,7 @@ app.get("/health", (req, res) => res.json({ status: "ok" }));
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use("/lorries", lorryRoutes);
+
+app.use("/comments", commentRoutes);
 
 module.exports = app;

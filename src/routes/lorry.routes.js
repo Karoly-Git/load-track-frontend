@@ -14,8 +14,8 @@ const {
     deleteLorry
 } = require("../controllers/lorry.controller");
 
-// Creata
-router.post("/add", addLorry);
+// Create
+router.post("/add-lorry", addLorry);
 
 // Read
 router.get("/", getAllLorries);
