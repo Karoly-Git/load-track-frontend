@@ -6,13 +6,13 @@ import type { Lorry } from "../../../types/lorry";
 import "./LorryTable.css";
 
 export default function LorryTable() {
-    const [data, setData] = useState<Lorry[]>([]);
+    const [lorriesData, setLorriesData] = useState<Lorry[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
 
     useEffect(() => {
         getAllLorries()
-            .then(setData)
+            .then(setLorriesData)
             .catch(setError)
             .finally(() => setLoading(false));
     }, []);
@@ -31,7 +31,7 @@ export default function LorryTable() {
                 </tr>
             </thead>
             <tbody>
-                {data.map(lorry => (
+                {lorriesData.map(lorry => (
                     <LorryTableRow
                         key={lorry.lorryId}
                         lorry={lorry}
