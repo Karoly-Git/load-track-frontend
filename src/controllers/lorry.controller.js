@@ -333,7 +333,7 @@ const deleteLorry = (req, res) => {
     const deletedLorry = data.splice(index, 1)[0];
     const newData = data.filter(el => el.lorryId !== id);
 
-    return res.status(200).json({ message: "Lorry delted successfully.", deletedLorry });
+    return res.status(200).json(newData);
 };
 
 module.exports = {
