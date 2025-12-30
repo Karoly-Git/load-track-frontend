@@ -10,7 +10,7 @@ import type { LorryData } from "../../components/forms/AddLorryForm/AddLorryForm
 import "./Dashboard.css";
 
 export default function Dashboard() {
-    const [userLoggedIn, setUserLoggedIn] = useState<boolean>(true);
+    const [userLoggedIn] = useState<boolean>(true);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const handleAdd = () => setIsModalOpen(true);

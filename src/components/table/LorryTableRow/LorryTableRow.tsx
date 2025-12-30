@@ -1,9 +1,10 @@
-import { useState } from "react";
-import StatusBadge from "../statusBadge/StatusBadge";
+import { useState, useEffect } from "react";
 import type { Lorry } from "../../../types/lorry";
-import "./LorryTableRow.css";
+import StatusBadge from "../statusBadge/StatusBadge";
 import { BsInfoCircle as InfoIco } from "react-icons/bs";
 import { RiDeleteBin2Line as BinIco } from "react-icons/ri";
+import { getLorryById } from "../../../api/lorries.api";
+import "./LorryTableRow.css";
 
 interface LorryTableRowProps {
     lorry: Lorry;
