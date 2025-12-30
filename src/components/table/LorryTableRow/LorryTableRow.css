@@ -6,6 +6,9 @@
      ACTION COLUMN
      ====================== */
 }
+.lorry-table-row * {
+  font-family: monospace;
+}
 .lorry-table-row td {
   padding: 1rem;
   vertical-align: middle;
@@ -33,9 +36,7 @@
 }
 .lorry-table-row .collection-ref-number {
   text-transform: uppercase;
-  font-family: monospace;
   color: #6b7280;
-  font-size: 14px;
 }
 .lorry-table-row .action {
   display: flex;
@@ -52,7 +53,6 @@
   height: 34px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 18px;
   color: #9ca3af;
   transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
 }

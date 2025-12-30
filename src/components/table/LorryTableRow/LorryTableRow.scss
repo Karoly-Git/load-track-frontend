@@ -1,4 +1,8 @@
 .lorry-table-row {
+    * {
+        font-family: monospace;
+    }
+
     td {
         padding: 1rem;
         vertical-align: middle;
@@ -35,9 +39,7 @@
 
     .collection-ref-number {
         text-transform: uppercase;
-        font-family: monospace;
         color: #6b7280;
-        font-size: 14px;
     }
 
     /* ======================
@@ -60,7 +62,6 @@
         height: 34px;
         border-radius: 8px;
         cursor: pointer;
-        font-size: 18px;
         color: #9ca3af;
         transition:
             background-color 0.15s ease,

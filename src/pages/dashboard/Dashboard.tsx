@@ -3,9 +3,9 @@ import Button from "../../components/ui/button/Button";
 import { GoPlus as PlusIcon } from "react-icons/go";
 
 import Modal from "../../components/ui/modal/Modal";
-import LorryTable from "../../components/table/lorryTable/LorryTable";
-import AddLorryForm from "../../components/forms/addLorryForm/AddLorryForm";
-import type { LorryData } from "../../components/forms/addLorryForm/AddLorryForm";
+import LorryTable from "../../components/table/LorryTable/LorryTable";
+import AddLorryForm from "../../components/forms/AddLorryForm/AddLorryForm";
+import type { LorryData } from "../../components/forms/AddLorryForm/AddLorryForm";
 
 import "./Dashboard.css";
 
@@ -28,7 +28,7 @@ export default function Dashboard() {
     return (
         <div className="dashboard">
             <div className="dashboard-head">
-                <h2>Lorry Statuses</h2>
+                <h2>Lorry Overview</h2>
                 {userLoggedIn && <Button icon={PlusIcon} text="Add Lorry" onClick={handleAdd} />}
             </div>
 
