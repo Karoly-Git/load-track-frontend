@@ -1,5 +1,10 @@
 export default function Settings() {
     return (
-        <div>Settings</div>
+        <div>
+            <ul>
+                <li>24h vs 12h time format</li>
+                <li>dark / light theme</li>
+            </ul>
+        </div>
     )
 }
