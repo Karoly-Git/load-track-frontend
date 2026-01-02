@@ -10,14 +10,14 @@ import "./Dashboard.css";
 
 export default function Dashboard() {
     const [userLoggedIn] = useState(true);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-    const handleAdd = () => setIsModalOpen(true);
-    const handleClose = () => setIsModalOpen(false);
+    const handleAddClick = () => setIsAddModalOpen(true);
+    const handleAddClose = () => setIsAddModalOpen(false);
 
     const handleFormSubmit = (lorryData) => {
         console.log("New Lorry Added:", lorryData);
-        setIsModalOpen(false);
+        setIsAddModalOpen(false);
     };
 
     return (
@@ -25,13 +25,13 @@ export default function Dashboard() {
             <div className="dashboard-head">
                 <h2>Lorry Overview</h2>
                 {userLoggedIn && (
-                    <Button icon={PlusIcon} text="Add Lorry" onClick={handleAdd} />
+                    <Button icon={PlusIcon} text="Add Lorry" onClick={handleAddClick} />
                 )}
             </div>
 
             <LorryTable />
 
-            <Modal isOpen={isModalOpen} onClose={handleClose}>
+            <Modal isOpen={isAddModalOpen} onClose={handleAddClose}>
                 <AddLorryForm onSubmit={handleFormSubmit} />
             </Modal>
         </div>
