@@ -7,7 +7,7 @@ import "./LorryTable.css";
 export default function LorryTable() {
     const dispatch = useDispatch();
 
-    const { items: lorriesData, loading, error } = useSelector(
+    const { items: lorriesList, loading, error } = useSelector(
         (state) => state.lorries
     );
 
@@ -19,31 +19,35 @@ export default function LorryTable() {
     if (error) return <p>{error}</p>;
 
     return (
-        <table className="lorry-table">
-            <thead>
-                <tr>
-                    <th>Material</th>
-                    <th>Customer</th>
-                    <th>Reference</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                {lorriesData.length === 0 && (
-                    <tr>
-                        <td colSpan={4} className="no-lorry-msg">
-                            No lorries currently on site!
-                        </td>
-                    </tr>
-                )}
+        <>
+            {
+                lorriesList.length === 0 && (
+                    <div colSpan={4} className="no-lorry-msg">
+                        No lorries currently on site!
+                    </div>
+                )
+            }
+            {lorriesList.length !== 0 && (
+                <table className="lorry-table" >
+                    <thead>
+                        <tr>
+                            <th>Material</th>
+                            <th>Customer</th>
+                            <th>Reference</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                {lorriesData.map((lorry) => (
-                    <LorryTableRow
-                        key={lorry.lorryId}
-                        lorry={lorry}
-                    />
-                ))}
-            </tbody>
-        </table>
+                        {lorriesList.map((lorry) => (
+                            <LorryTableRow
+                                key={lorry.lorryId}
+                                lorry={lorry}
+                            />
+                        ))}
+                    </tbody>
+                </table >
+            )}
+        </>
     );
 }

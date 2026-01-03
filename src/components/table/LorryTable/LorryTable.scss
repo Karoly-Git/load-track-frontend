@@ -1,3 +1,12 @@
+.no-lorry-msg {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 1rem 0;
+    font-weight: bolder;
+    font-size: x-large;
+    background-color: red;
+}
+
 .lorry-table {
     width: 100%;
     border-collapse: collapse;
@@ -29,13 +38,6 @@
             &:hover {
                 background-color: #e6f1fd;
             }
-        }
-
-        .no-lorry-msg {
-            text-align: center;
-            padding: 1rem 0;
-            font-weight: bolder;
-            font-size: x-large;
         }
     }
 }
