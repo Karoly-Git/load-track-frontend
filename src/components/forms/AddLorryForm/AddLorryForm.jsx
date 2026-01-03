@@ -34,7 +34,7 @@ export default function AddLorryForm({ onSubmit }) {
     };
 
     return (
-        <form className="lorry-form" onSubmit={handleSubmit}>
+        <form className="add-lorry-form" onSubmit={handleSubmit}>
             <h3>Add New Lorry</h3>
 
             <label>
