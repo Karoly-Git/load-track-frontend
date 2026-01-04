@@ -5,7 +5,7 @@ import { GoPlus as PlusIcon } from "react-icons/go";
 import "./Dashboard.css";
 
 import Modal from "../../components/ui/modal/Modal";
-import LorryTable from "../../components/table/LorryTable/LorryTable";
+import LorryTable from "../../components/table/lorryTable/LorryTable";
 import AddLorryForm from "../../components/forms/AddLorryForm/AddLorryForm";
 
 export default function Dashboard() {

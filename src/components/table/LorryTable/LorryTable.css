@@ -1,10 +1,31 @@
 .no-lorry-msg {
-  margin-top: 2rem;
+  margin: 3rem auto;
+  max-width: 420px;
+  padding: 2rem;
   text-align: center;
-  padding: 1rem 0;
-  font-weight: bolder;
-  font-size: x-large;
-  background-color: red;
+  background: #f8fafc;
+  /* light gray */
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  color: #334155;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.no-lorry-msg .icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.no-lorry-msg h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.no-lorry-msg p {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #64748b;
 }
 
 .lorry-table {

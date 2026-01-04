@@ -20,13 +20,13 @@ export default function LorryTable() {
 
     return (
         <>
-            {
-                lorriesList.length === 0 && (
-                    <div colSpan={4} className="no-lorry-msg">
-                        No lorries currently on site!
-                    </div>
-                )
-            }
+            {lorriesList.length === 0 && (
+                <div className="no-lorry-msg">
+                    <div className="icon">🚚</div>
+                    <h2>No lorries on site</h2>
+                    <p>All clear for now. New arrivals will appear here.</p>
+                </div>
+            )}
             {lorriesList.length !== 0 && (
                 <table className="lorry-table" >
                     <thead>
