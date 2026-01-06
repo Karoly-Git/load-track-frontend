@@ -58,7 +58,7 @@ export default function UpdateStatusForm({ lorry, onCancel }) {
 
     return (
         <form className="update-status-form" onSubmit={handleSubmit}>
-            <h3>Update lorry status</h3>
+            <h2>Update lorry status</h2>
 
             <div className="status-preview">
                 <div className="status-row">
