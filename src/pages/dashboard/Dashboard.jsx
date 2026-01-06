@@ -5,7 +5,7 @@ import { GoPlus as PlusIcon } from "react-icons/go";
 import "./Dashboard.css";
 
 import Modal from "../../components/ui/modal/Modal";
-import LorryTable from "../../components/table/lorryTable/LorryTable";
+import LorryTable from "../../components/table/LorryTable/LorryTable";
 import AddLorryForm from "../../components/forms/AddLorryForm/AddLorryForm";
 
 export default function Dashboard() {
@@ -23,7 +23,7 @@ export default function Dashboard() {
     return (
         <div className="dashboard">
             <div className="dashboard-head">
-                <h2>Lorry Overview</h2>
+                <h2>Collection Overview</h2>
                 {userLoggedIn && (
                     <Button icon={PlusIcon} text="Add Lorry" onClick={handleAddClick} />
                 )}

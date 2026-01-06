@@ -10,9 +10,9 @@ import { LORRY_STATUSES } from "../../../constants/lorry-statuses";
 import "./LorryTableRow.css";
 
 import Modal from "../../ui/modal/Modal";
-import LorryInfo from "../../ui/modal/LorryInfo/LorryInfo";
 import UpdateStatusForm from "../../forms/updateStatusForm/UpdateStatusForm";
-import DeleteLorryForm from "../../forms/DeleteLorryForm.jsx/DeleteLorryForm";
+import DeleteLorryForm from "../../forms/DeleteCollectionForm.jsx/DeleteLorryForm";
+import LorryInfoForm from "../../forms/CollectionInfoForm/LorryInfoForm";
 
 export default function LorryTableRow({ lorry }) {
     const dispatch = useDispatch();
@@ -105,7 +105,7 @@ export default function LorryTableRow({ lorry }) {
             <tr>
                 <td>
                     <Modal isOpen={isInfoModalOpen} onClose={handleInfoClose}>
-                        <LorryInfo lorry={lorry} />
+                        <LorryInfoForm lorry={lorry} />
                     </Modal>
                 </td>
                 <td>

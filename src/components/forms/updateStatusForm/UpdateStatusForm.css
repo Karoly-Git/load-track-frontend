@@ -1,16 +1,5 @@
 .update-status-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  min-width: 280px;
   /* ---------- Status preview ---------- */
-  /* ---------- Actions ---------- */
-}
-.update-status-form h2 {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #222;
 }
 .update-status-form .status-preview {
   display: flex;
@@ -71,34 +60,4 @@
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-}
-.update-status-form .actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.75rem;
-}
-.update-status-form .actions .btn {
-  padding: 0.45rem 1.1rem;
-  font-size: 0.85rem;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.2s ease, box-shadow 0.15s ease, transform 0.1s ease;
-}
-.update-status-form .actions .btn:active {
-  transform: translateY(1px);
-}
-.update-status-form .actions .btn.cancel {
-  background: transparent;
-  color: #555;
-}
-.update-status-form .actions .btn.cancel:hover {
-  background: #f2f2f2;
-}
-.update-status-form .actions .btn.update {
-  background: #1f7a3f;
-  color: #fff;
-}
-.update-status-form .actions .btn.update:hover {
-  background: #196533;
 }/*# sourceMappingURL=UpdateStatusForm.css.map */

@@ -2,6 +2,8 @@ import { useDispatch } from "react-redux";
 import { LORRY_STATUSES } from "../../../constants/lorry-statuses";
 import { formatText } from "../../../utils/formatText";
 import { updateLorryStatusById } from "../../../state/lorry/lorrySlice";
+
+import "../FormStyle.css";
 import "./UpdateStatusForm.css";
 
 export default function UpdateStatusForm({ lorry, onCancel }) {
@@ -19,7 +21,7 @@ export default function UpdateStatusForm({ lorry, onCancel }) {
 
     if (!nextStatus) {
         return (
-            <div className="update-status-form">
+            <div className="form update-status-form">
                 <h2>Lorry has checked out</h2>
                 <p>No further status updates available.</p>
 
@@ -57,7 +59,7 @@ export default function UpdateStatusForm({ lorry, onCancel }) {
     }
 
     return (
-        <form className="update-status-form" onSubmit={handleSubmit}>
+        <form className="form update-status-form" onSubmit={handleSubmit}>
             <h2>Update lorry status</h2>
 
             <div className="status-preview">
@@ -78,6 +80,15 @@ export default function UpdateStatusForm({ lorry, onCancel }) {
                 </div>
             </div>
 
+            <label>
+                Comment (optional)
+                <textarea
+                //value={comment}
+                //onChange={(e) => setComment(e.target.value)}
+                />
+            </label>
+
+
             <div className="actions">
                 <button
                     type="button"
@@ -88,7 +99,7 @@ export default function UpdateStatusForm({ lorry, onCancel }) {
                 </button>
 
                 <button type="submit" className="btn update">
-                    Confirm update
+                    Update
                 </button>
             </div>
         </form>

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { CUSTOMER_NAMES } from "../../../constants/customer-names";
 import { MATERIAL_NAMES } from "../../../constants/material-names";
-import "./AddLorryForm.css";
+import "../FormStyle.css";
 
-export default function AddLorryForm({ onSubmit }) {
+export default function AddLorryForm({ onSubmit, onCancel }) {
     const [regNum, setRegNum] = useState("");
     const [materialName, setMaterialName] = useState("");
     const [customerName, setCustomerName] = useState("");
@@ -34,7 +34,7 @@ export default function AddLorryForm({ onSubmit }) {
     };
 
     return (
-        <form className="add-lorry-form" onSubmit={handleSubmit}>
+        <form className="form add-lorry-form" onSubmit={handleSubmit}>
             <h3>Add New Lorry</h3>
 
             <label>
@@ -113,9 +113,19 @@ export default function AddLorryForm({ onSubmit }) {
                 />
             </label>
 
-            <button type="submit" className="submit-btn">
-                Add Lorry
-            </button>
+            <div className="actions">
+                <button
+                    type="button"
+                    className="btn cancel"
+                    onClick={onCancel}
+                >
+                    Cancel
+                </button>
+
+                <button type="submit" className="btn update">
+                    Add Lorry
+                </button>
+            </div>
         </form>
     );
 }

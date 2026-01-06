@@ -1,4 +1,4 @@
-import "./AddCommentForm.css";
+import "../FormStyle.css";
 
 export default function AddCommentForm({ lorryId, onCancel }) {
 
@@ -12,7 +12,7 @@ export default function AddCommentForm({ lorryId, onCancel }) {
         onCancel(); // Close the form after submission
     };
     return (
-        <form className="add-comment-form" onSubmit={handleSubmit}>
+        <form className="form add-comment-form" onSubmit={handleSubmit}>
             <textarea
                 placeholder="Write your comment here..."
             />

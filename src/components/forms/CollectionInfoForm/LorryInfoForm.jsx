@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { formatText } from '../../../../utils/formatText';
-import { formatTime } from '../../../../utils/formatTime';
-import './LorryInfo.css';
-import AddCommentForm from '../../../forms/AddCommentForm/AddCommentForm';
+import "../FormStyle.css";
+import './LorryInfoForm.css';
+import AddCommentForm from '../AddCommentForm/AddCommentForm';
 
 import { FaCommentMedical as AddCommentIcon } from 'react-icons/fa6';
 import { FaCommentSlash as DontAddCommentIcon } from 'react-icons/fa6';
+import { formatText } from '../../../utils/formatText';
+import { formatTime } from '../../../utils/formatTime';
 
-export default function LorryInfo({ lorry }) {
+export default function LorryInfoForm({ lorry }) {
     if (!lorry) return null;
 
     const {
@@ -31,11 +32,11 @@ export default function LorryInfo({ lorry }) {
     };
 
     return (
-        <section className="lorry-info">
-            <header className="lorry-header">
+        <section className="form collection-info-form">
+            <header className="collection-header">
                 <h2>Collection Info</h2>
 
-                <div className="lorry-details">
+                <div className="collection-details">
                     <p>
                         <strong>Material</strong>
                         <span>{materialName}</span>
@@ -49,7 +50,7 @@ export default function LorryInfo({ lorry }) {
                         <span>{collectionRefNum}</span>
                     </p>
                     <p>
-                        <strong>Registration number</strong>
+                        <strong>Lorry reg number</strong>
                         <span>{regNum}</span>
                     </p>
                     <p>
