@@ -11,4 +11,6 @@ Would be more logical to call collection info instead of lorry info
 
 No button in td where no need
 
+Auth on login
+
 
