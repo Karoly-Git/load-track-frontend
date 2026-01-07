@@ -6,16 +6,19 @@ import Button from "../../ui/button/Button";
 
 import "../FormStyle.css";
 import "./UpdateStatusForm.css";
+import { useState } from "react";
 
 export default function UpdateStatusForm({ collection, onCancel }) {
     const dispatch = useDispatch();
     const currentStatus = collection.currentStatus;
+    const [comment, setComment] = useState("");
 
+    // Extract used statuses from status history
     const usedStatuses = collection.statusHistory.map(
         (entry) => entry.status
     );
 
-    // ✅ Find the only valid next status
+    // Find the only valid next status
     const nextStatus = Object.values(COLLECTION_STATUSES).find(
         (status) => !usedStatuses.includes(status)
     );
@@ -46,8 +49,8 @@ export default function UpdateStatusForm({ collection, onCancel }) {
                 updateCollectionStatusById({
                     collectionId: collection.id,
                     status: nextStatus,
-                    userId: "9999", // This should come from auth state
-                    comment: `Status updated from ${currentStatus} to ${nextStatus}`,
+                    userId: "User ID", // This should come from auth state
+                    comment: comment,
                 })
             ).unwrap();
 
@@ -83,8 +86,8 @@ export default function UpdateStatusForm({ collection, onCancel }) {
             <label>
                 Comment (optional)
                 <textarea
-                //value={comment}
-                //onChange={(e) => setComment(e.target.value)}
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
                 />
             </label>
 
