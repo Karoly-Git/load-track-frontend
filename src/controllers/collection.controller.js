@@ -1,0 +1,247 @@
+const data = require("../__mocks__/collection.data");
+const COLLECTION_STATUSES = require("../constants/collection-statuses");
+
+/**
+ * ─────────────────────────────────────────────────────────────
+ * Helpers
+ * ─────────────────────────────────────────────────────────────
+ */
+
+/**
+ * Find collection by ID
+ */
+const findCollectionById = (collectionId) =>
+    data.find(c => c.id === collectionId) || null;
+
+/**
+ * Validate required fields (params + body)
+ * Sends 400 response if missing
+ */
+const validateRequiredFields = (req, res, requiredKeys = []) => {
+    const source = { ...req.params, ...req.body };
+
+    const missingFields = requiredKeys.filter(key => {
+        const value = source[key];
+        return (
+            value === undefined ||
+            value === null ||
+            (typeof value === "string" && !value.trim())
+        );
+    });
+
+    if (!missingFields.length) return false;
+
+    res.status(400).json({
+        message: `Missing required field(s) or param(s): '${missingFields.join(", ")}'`
+    });
+
+    return true;
+};
+
+/**
+ * ─────────────────────────────────────────────────────────────
+ * Controllers
+ * ─────────────────────────────────────────────────────────────
+ */
+
+/**
+ * Add new collection
+ */
+export const addCollection = (req, res) => {
+    if (
+        validateRequiredFields(req, res, [
+            "materialName",
+            "customerName",
+            "collectionRefNum",
+            "updatedByUserId"
+        ])
+    ) return;
+
+    const {
+        materialName,
+        customerName,
+        collectionRefNum,
+        lorryRegNum,
+        updatedByUserId,
+        comment
+    } = req.body;
+
+    const timestamp = new Date().toISOString();
+    const newId = String(data.length + 1);
+
+    const newCollection = {
+        id: newId,
+        materialName,
+        customerName,
+        collectionRefNum,
+        lorryRegNum,
+        checkedInAt: timestamp,
+        checkedOutAt: null,
+        currentStatus: COLLECTION_STATUSES.CHECKED_IN,
+        statusHistory: [
+            {
+                status: COLLECTION_STATUSES.CHECKED_IN,
+                timestamp,
+                updatedByUserId,
+                comments: comment
+                    ? [
+                        {
+                            id: `c-${Date.now()}`,
+                            userId: updatedByUserId,
+                            text: comment,
+                            timestamp
+                        }
+                    ]
+                    : []
+            }
+        ]
+    };
+
+    data.push(newCollection);
+    return res.status(201).json(newCollection);
+};
+
+/**
+ * Get all collections
+ */
+export const getAllCollections = (req, res) => {
+    return res.status(200).json(data);
+};
+
+/**
+ * Get single collection
+ */
+export const getCollectionById = (req, res) => {
+    if (validateRequiredFields(req, res, ["collectionId"])) return;
+
+    const { collectionId } = req.params;
+    const collection = findCollectionById(collectionId);
+
+    if (!collection) {
+        return res.status(404).json({
+            message: `Collection with ID '${collectionId}' not found`
+        });
+    }
+
+    return res.status(200).json(collection);
+};
+
+/**
+ * Get collection status history
+ */
+export const getCollectionStatusHistory = (req, res) => {
+    if (validateRequiredFields(req, res, ["collectionId"])) return;
+
+    const { collectionId } = req.params;
+    const collection = findCollectionById(collectionId);
+
+    if (!collection) {
+        return res.status(404).json({
+            message: `Collection with ID '${collectionId}' not found`
+        });
+    }
+
+    return res.status(200).json(collection.statusHistory);
+};
+
+/**
+ * Generic updater for simple fields
+ */
+const updateCollectionField = (field) => (req, res) => {
+    if (validateRequiredFields(req, res, ["collectionId", field])) return;
+
+    const { collectionId } = req.params;
+    const collection = findCollectionById(collectionId);
+
+    if (!collection) {
+        return res.status(404).json({
+            message: `Collection with ID '${collectionId}' not found`
+        });
+    }
+
+    collection[field] = req.body[field];
+    return res.status(200).json(collection);
+};
+
+export const updateMaterialName = updateCollectionField("materialName");
+export const updateCustomerName = updateCollectionField("customerName");
+export const updateCollectionRefNum = updateCollectionField("collectionRefNum");
+export const updateLorryRegNum = updateCollectionField("lorryRegNum");
+
+/**
+ * Update collection status
+ */
+export const updateCollectionStatus = (req, res) => {
+    if (
+        validateRequiredFields(req, res, [
+            "collectionId",
+            "status",
+            "updatedByUserId"
+        ])
+    ) return;
+
+    const { collectionId } = req.params;
+    const { status, updatedByUserId, comment } = req.body;
+
+    if (!Object.values(COLLECTION_STATUSES).includes(status)) {
+        return res.status(400).json({ message: "Invalid status value" });
+    }
+
+    const collection = findCollectionById(collectionId);
+    if (!collection) {
+        return res.status(404).json({
+            message: `Collection with ID '${collectionId}' not found`
+        });
+    }
+
+    if (collection.currentStatus === status) {
+        return res.status(409).json({
+            message: `Status '${status}' already applied`
+        });
+    }
+
+    const timestamp = new Date().toISOString();
+    collection.currentStatus = status;
+
+    if (status === COLLECTION_STATUSES.CHECKED_OUT) {
+        collection.checkedOutAt = timestamp;
+    }
+
+    collection.statusHistory.push({
+        status,
+        timestamp,
+        updatedByUserId,
+        comments: comment
+            ? [
+                {
+                    id: `c-${Date.now()}`,
+                    userId: updatedByUserId,
+                    text: comment,
+                    timestamp
+                }
+            ]
+            : []
+    });
+
+    return res.status(200).json(collection);
+};
+
+/**
+ * Delete collection
+ */
+export const deleteCollection = (req, res) => {
+    if (validateRequiredFields(req, res, ["collectionId"])) return;
+
+    const { collectionId } = req.params;
+    const index = data.findIndex(c => c.id === collectionId);
+
+    if (index === -1) {
+        return res.status(404).json({
+            message: `Collection with ID '${collectionId}' not found`
+        });
+    }
+
+    data.splice(index, 1);
+    return res.status(200).json({ message: "Collection deleted" });
+};
+

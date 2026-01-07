@@ -1,15 +1,26 @@
-const data = require("../__mocks__/lorry.data");
-const LORRY_STATUSES_ENUM = require("../constants/lorry-statuses");
+const data = require("../__mocks__/collection.data");
+const COLLECTION_STATUSES = require("../constants/collection-statuses");
+
+/**
+ * ─────────────────────────────────────────────────────────────
+ * Helpers
+ * ─────────────────────────────────────────────────────────────
+ */
 
 /**
  * Helper: find comment with references
  */
 const findCommentById = (commentId) => {
-    for (const lorry of data) {
-        for (const statusEntry of lorry.statusHistory) {
-            const comment = statusEntry.comments.find(c => c.id === commentId);
-            if (comment) {
-                return { lorry, statusEntry, comment };
+    for (const collection of data) {
+        for (const history of collection.statusHistory) {
+            const index = history.comments.findIndex(c => c.id === commentId);
+            if (index !== -1) {
+                return {
+                    collection,
+                    history,
+                    comment: history.comments[index],
+                    commentIndex: index
+                };
             }
         }
     }
@@ -17,76 +28,87 @@ const findCommentById = (commentId) => {
 };
 
 /**
- * Add comment to a lorry status
+ * Helper: validate required params/body and send 400 if missing
  */
-const addComment = (req, res) => {
-    const { lorryId, status } = req.params;
+const validateRequiredFields = (req, res, requiredKeys = []) => {
+    const source = { ...req.params, ...req.body };
+
+    const missingFields = requiredKeys.filter(
+        field =>
+            source[field] === undefined ||
+            source[field] === null ||
+            (typeof source[field] === "string" && !source[field].trim())
+    );
+
+    if (!missingFields.length) return false;
+
+    return res.status(400).json({
+        message: `Missing required field(s): '${missingFields.join(", ")}'`
+    });
+};
+
+/**
+ * ─────────────────────────────────────────────────────────────
+ * Controllers
+ * ─────────────────────────────────────────────────────────────
+ */
+
+/**
+ * Add comment to a collection status
+ */
+export const addComment = (req, res) => {
+    if (validateRequiredFields(req, res, ["collectionId", "status", "userId", "text"])) return;
+
+    const { collectionId, status } = req.params;
     const { userId, text } = req.body;
 
-    const missingFields = [];
-    if (!lorryId) missingFields.push("lorryId");
-    if (!status) missingFields.push("status");
-    if (!userId) missingFields.push("userId");
-    if (!text) missingFields.push("text");
-
-    if (missingFields.length) {
-        return res.status(400).json({
-            message: `Missing required field(s) or param(s): '${missingFields.join(", ")}'`
-        });
-    }
-
-    if (!Object.values(LORRY_STATUSES_ENUM).includes(status)) {
+    if (!Object.values(COLLECTION_STATUSES).includes(status)) {
         return res.status(400).json({ message: "Invalid status value" });
     }
 
-    const lorry = data.find(l => l.lorryId === lorryId);
-    if (!lorry) {
-        return res.status(404).json({
-            message: `Lorry with id '${lorryId}' not found`
-        });
+    const collection = data.find(c => c.id === collectionId);
+    if (!collection) {
+        return res.status(404).json({ message: `Collection with ID '${collectionId}' not found` });
     }
 
-    const statusEntry = lorry.statusHistory.find(s => s.status === status);
+    const statusEntry = collection.statusHistory.find(s => s.status === status);
     if (!statusEntry) {
         return res.status(404).json({
-            message: `Status '${status}' not found for lorry '${lorryId}'`
+            message: `Status '${status}' not found for collection with ID '${collectionId}'`
         });
     }
-
-    const timestamp = new Date().toISOString();
 
     const newComment = {
         id: `c-${Date.now()}`,
         userId,
         text,
-        timestamp
+        timestamp: new Date().toISOString()
     };
 
     statusEntry.comments.push(newComment);
 
-    return res.status(201).json({
-        message: "Comment added successfully.",
-        comment: newComment
-    });
+    return res.status(201).json(newComment);
 };
 
 /**
- * Get all comments of a specific status of a lorry
+ * Get all comments of a specific status of a collection
  */
-const getAllComments = (req, res) => {
-    const { lorryId, status } = req.params;
+export const getAllComments = (req, res) => {
+    if (validateRequiredFields(req, res, ["collectionId", "status"])) return;
 
-    const lorry = data.find(l => l.lorryId === lorryId);
-    if (!lorry) {
+    const { collectionId, status } = req.params;
+
+    const collection = data.find(c => c.id === collectionId);
+    if (!collection) {
         return res.status(404).json({
-            message: `Lorry with id '${lorryId}' not found`
+            message: `Collection with ID '${collectionId}' not found`
         });
     }
 
-    const statusEntry = lorry.statusHistory.find(s => s.status === status);
+    const statusEntry = collection.statusHistory.find(s => s.status === status);
     if (!statusEntry) {
         return res.status(404).json({
-            message: `Status '${status}' not found for lorry '${lorryId}'`
+            message: `Status '${status}' not found for collection with ID '${collectionId}'`
         });
     }
 
@@ -96,88 +118,62 @@ const getAllComments = (req, res) => {
 /**
  * Get single comment
  */
-const getSingleComment = (req, res) => {
+export const getSingleComment = (req, res) => {
+    if (validateRequiredFields(req, res, ["commentId"])) return;
+
     const { commentId } = req.params;
-
-    if (!commentId) {
-        return res.status(400).json({
-            message: "Missing commentId",
-        });
-    }
-
-    for (const lorry of data) {
-        for (const statusEntry of lorry.statusHistory) {
-            const comment = statusEntry.comments.find(
-                c => c.id === commentId
-            );
-
-            if (comment) {
-                return res.status(200).json(comment);
-            }
-        }
-    }
-
-    return res.status(404).json({
-        message: `Comment with id '${commentId}' not found`,
-    });
-};
-/**
- * Update a comment
- */
-const updateComment = (req, res) => {
-    const { commentId } = req.params;
-    const { text } = req.body;
-
-    if (!text) {
-        return res.status(400).json({
-            message: "Text is required"
-        });
-    }
 
     const result = findCommentById(commentId);
     if (!result) {
         return res.status(404).json({
-            message: `Comment with id '${commentId}' not found`
+            message: `Comment with ID '${commentId}' not found`
+        });
+    }
+
+    return res.status(200).json(result.comment);
+};
+
+/**
+ * Update a comment
+ */
+export const updateComment = (req, res) => {
+    if (validateRequiredFields(req, res, ["commentId"])) return;
+
+    const { commentId } = req.params;
+    const { text } = req.body;
+
+    const result = findCommentById(commentId);
+    if (!result) {
+        return res.status(404).json({
+            message: `Comment with ID '${commentId}' not found`
         });
     }
 
     result.comment.text = text;
     result.comment.timestamp = new Date().toISOString();
 
-    return res.status(200).json({
-        message: "Comment updated successfully.",
-        comment: result.comment
-    });
+    return res.status(200).json(result.comment);
 };
+
 
 /**
  * Delete a comment
  */
-const deleteComment = (req, res) => {
+export const deleteComment = (req, res) => {
+    if (validateRequiredFields(req, res, ["commentId"])) return;
+
     const { commentId } = req.params;
 
-    for (const lorry of data) {
-        for (const statusEntry of lorry.statusHistory) {
-            const index = statusEntry.comments.findIndex(c => c.id === commentId);
-            if (index !== -1) {
-                const deletedComment = statusEntry.comments.splice(index, 1)[0];
-                return res.status(200).json({
-                    message: "Comment deleted successfully.",
-                    deletedComment
-                });
-            }
-        }
+    const result = findCommentById(commentId);
+    if (!result) {
+        return res.status(404).json({
+            message: `Comment with ID '${commentId}' not found`
+        });
     }
 
-    return res.status(404).json({
-        message: `Comment with id '${commentId}' not found`
-    });
-};
+    result.history.comments.splice(result.commentIndex, 1);
 
-module.exports = {
-    addComment,
-    getAllComments,
-    getSingleComment,
-    updateComment,
-    deleteComment
+    return res.status(200).json({
+        message: `Comment with ID '${commentId}' deleted successfully`
+    });
 };

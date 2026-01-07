@@ -5,48 +5,49 @@ const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./swagger");
 
-const lorryRoutes = require("./src/routes/lorry.routes");
+const collectionRoutes = require("./src/routes/collection.routes");
 const commentRoutes = require("./src/routes/comment.routes");
 
 const app = express();
 
-// Helps rate-limit and IP handling
+// Trust proxy (Render / Heroku / Nginx)
 app.set("trust proxy", 1);
 
 // Middleware
 app.use(express.json());
 
-// CORS (important for Swagger UI)
+// CORS
 app.use(
     cors({
-        origin: "*", // tighten later if needed
+        origin: "*", // restrict in production
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
         allowedHeaders: ["Content-Type", "Authorization"],
     })
 );
 
+// Root info
 app.get("/", (req, res) => {
-    res.json(
-        {
-            "name": "load-track-backend",
-            "developer": {
-                "name": "Karoly Hornyak",
-                "tel": "+447421411763",
-                "email": "karoly.webdev@gmail.com",
-                "web": "karolyhornyak.com"
-            },
+    res.json({
+        name: "collection-track-backend",
+        developer: {
+            name: "Karoly Hornyak",
+            tel: "+447421411763",
+            email: "karoly.webdev@gmail.com",
+            web: "karolyhornyak.com"
         }
-    );
+    });
 });
 
 // Health check
-app.get("/health", (req, res) => res.json({ status: "ok" }));
+app.get("/health", (req, res) => {
+    res.json({ status: "ok" });
+});
 
-// Swagger docs
+// Swagger
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.use("/lorries", lorryRoutes);
-
+// Routes
+app.use("/collections", collectionRoutes);
 app.use("/comments", commentRoutes);
 
 module.exports = app;

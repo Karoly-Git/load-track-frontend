@@ -10,16 +10,18 @@ const {
 } = require("../controllers/comment.controller");
 
 // Create
-router.post("/:lorryId/:status", addComment);
+router.post("/collection/:collectionId/status/:status", addComment);
 
 // Read
-router.get("/:lorryId/:status", getAllComments);
+router.get("/collection/:collectionId/status/:status", getAllComments);
 router.get("/:commentId", getSingleComment);
 
 // Update
-router.put("/:commentId", updateComment);
+router.patch("/:commentId", updateComment);
 
 // Delete
 router.delete("/:commentId", deleteComment);
 
 module.exports = router;
+
+

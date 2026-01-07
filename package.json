@@ -1,5 +1,5 @@
 {
-  "name": "load-track-backend",
+  "name": "collection-track-backend",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -9,16 +9,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Karoly-Git/load-track-backend.git"
+    "url": "git+https://github.com/Karoly-Git/collection-track-backend.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Karoly-Git/load-track-backend/issues"
+    "url": "https://github.com/Karoly-Git/collection-track-backend/issues"
   },
-  "homepage": "https://github.com/Karoly-Git/load-track-backend#readme",
-  "description": "Backend API for the lorry tracking system, managing vehicle check-ins, loading workflows, check-outs, data persistence, and secure access for real-time status visibility.",
+  "homepage": "https://github.com/Karoly-Git/collection-track-backend#readme",
+  "description": "Backend API for the collection tracking system, managing vehicle check-ins, loading workflows, check-outs, data persistence, and secure access for real-time status visibility.",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",

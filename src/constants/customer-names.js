@@ -1,4 +1,4 @@
-const CUSTOMER_NAMES_ENUM = {
+const CUSTOMER_NAMES = {
     PEUTE: "Peute",
     MRL: "MRL",
     VOLKER: "Volker",
@@ -6,4 +6,4 @@ const CUSTOMER_NAMES_ENUM = {
     URM: "URM"
 };
 
-module.exports = CUSTOMER_NAMES_ENUM;
+module.exports = CUSTOMER_NAMES;

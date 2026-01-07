@@ -1,4 +1,4 @@
-const MATERIAL_NAMES_ENUM = {
+const MATERIAL_NAMES = {
     // Paper
     MIXED_PAPER_GR1: "Mixed paper G1",
     MIXED_PAPER_GR2: "Mixed paper G2",
@@ -18,4 +18,4 @@ const MATERIAL_NAMES_ENUM = {
     GLASS: "Glass"
 };
 
-module.exports = MATERIAL_NAMES_ENUM;
+module.exports = MATERIAL_NAMES;

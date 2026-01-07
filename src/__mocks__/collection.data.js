@@ -1,37 +1,37 @@
-const LORRY_STATUSES_ENUM = require("../constants/lorry-statuses");
-const MATERIAL_NAMES_ENUM = require("../constants/material-names");
-const CUSTOMER_NAMES_ENUM = require("../constants/customer-names");
+const COLLECTION_STATUSES = require("../constants/collection-statuses");
+const MATERIAL_NAMES = require("../constants/material-names");
+const CUSTOMER_NAMES = require("../constants/customer-names");
 
-const lorryTrackData = [
+export const data = [
     {
-        lorryId: "1",
-        regNum: "pz65pwo",
-        materialName: MATERIAL_NAMES_ENUM.MIXED_PAPER_GR1,
-        customerName: CUSTOMER_NAMES_ENUM.PEUTE,
-        collectionRefNum: "vg123sd",
+        id: "1",
+        materialName: MATERIAL_NAMES.MIXED_PAPER_GR1,
+        customerName: CUSTOMER_NAMES.PEUTE,
+        collectionRefNum: "peute 1234",
+        lorryRegNum: "pz65pwo",
         checkedInAt: "2025-12-27T08:40:00Z",
         checkedOutAt: null,
-        currentStatus: LORRY_STATUSES_ENUM.CHECKED_IN,
+        currentStatus: COLLECTION_STATUSES.CHECKED_IN,
         statusHistory: [
             {
-                status: LORRY_STATUSES_ENUM.CHECKED_IN,
+                status: COLLECTION_STATUSES.CHECKED_IN,
                 timestamp: "2025-12-27T08:40:00Z",
-                updatedBy: { userId: "u-002" },
+                updatedByUserId: "wb-001",
                 comments: [
                     {
-                        id: "c-1-001",
+                        id: "a9f3k2m8",
                         userId: "wb-002",
                         text: "Lorry arrived on time.",
                         timestamp: "2025-12-27T08:41:00Z"
                     },
                     {
-                        id: "c-1-002",
+                        id: "q7x2n9c4",
                         userId: "flt-003",
                         text: "I am FLT driver and Lorry driver punched me",
                         timestamp: "2025-12-27T08:55:00Z"
                     },
                     {
-                        id: "c-1-003",
+                        id: "m8r5t2w9",
                         userId: "sv-004",
                         text: "I am Supervisor and punched the Lorry driver",
                         timestamp: "2025-12-27T08:55:00Z"
@@ -42,22 +42,22 @@ const lorryTrackData = [
     },
 
     {
-        lorryId: "2",
-        regNum: "lm12abc",
-        materialName: MATERIAL_NAMES_ENUM.PET_CLEAR,
-        customerName: CUSTOMER_NAMES_ENUM.MRL,
+        id: "2",
+        materialName: MATERIAL_NAMES.PET_CLEAR,
+        customerName: CUSTOMER_NAMES.MRL,
         collectionRefNum: "ab456xy",
+        lorryRegNum: "lm12abc",
         checkedInAt: "2025-12-27T08:55:00Z",
         checkedOutAt: null,
-        currentStatus: LORRY_STATUSES_ENUM.LOADING,
+        currentStatus: COLLECTION_STATUSES.LOADING,
         statusHistory: [
             {
-                status: LORRY_STATUSES_ENUM.CHECKED_IN,
+                status: COLLECTION_STATUSES.CHECKED_IN,
                 timestamp: "2025-12-27T08:55:00Z",
-                updatedBy: { userId: "u-002" },
+                updatedByUserId: "wb-002",
                 comments: [
                     {
-                        id: "c-2-001",
+                        id: "z4k9x2b7",
                         userId: "u-002",
                         text: "Checked in at weighbridge.",
                         timestamp: "2025-12-27T08:56:00Z"
@@ -65,12 +65,12 @@ const lorryTrackData = [
                 ]
             },
             {
-                status: LORRY_STATUSES_ENUM.LOADING,
+                status: COLLECTION_STATUSES.LOADING,
                 timestamp: "2025-12-27T09:10:00Z",
-                updatedBy: { userId: "u-003" },
+                updatedByUserId: "flt-1",
                 comments: [
                     {
-                        id: "c-2-002",
+                        id: "n6c8p3v2",
                         userId: "u-003",
                         text: "Started loading PET clear.",
                         timestamp: "2025-12-27T09:11:00Z"
@@ -81,22 +81,22 @@ const lorryTrackData = [
     },
 
     {
-        lorryId: "3",
-        regNum: "qr34def",
-        materialName: MATERIAL_NAMES_ENUM.HDPE_NATURAL,
-        customerName: CUSTOMER_NAMES_ENUM.VOLKER,
-        collectionRefNum: "cd789ef",
+        id: "3",
+        materialName: MATERIAL_NAMES.HDPE_NATURAL,
+        customerName: CUSTOMER_NAMES.VOLKER,
+        collectionRefNum: "vl1234",
+        lorryRegNum: "qr34def",
         checkedInAt: "2025-12-27T07:50:00Z",
         checkedOutAt: null,
-        currentStatus: LORRY_STATUSES_ENUM.LOADED,
+        currentStatus: COLLECTION_STATUSES.LOADED,
         statusHistory: [
             {
-                status: LORRY_STATUSES_ENUM.CHECKED_IN,
+                status: COLLECTION_STATUSES.CHECKED_IN,
                 timestamp: "2025-12-27T07:50:00Z",
-                updatedBy: { userId: "u-002" },
+                updatedByUserId: "wb-001",
                 comments: [
                     {
-                        id: "c-3-001",
+                        id: "b5x9r2k8",
                         userId: "u-002",
                         text: "I have checked in the lorry.",
                         timestamp: "2025-12-27T07:51:00Z"
@@ -104,12 +104,12 @@ const lorryTrackData = [
                 ]
             },
             {
-                status: LORRY_STATUSES_ENUM.LOADING,
+                status: COLLECTION_STATUSES.LOADING,
                 timestamp: "2025-12-27T08:05:00Z",
-                updatedBy: { userId: "u-003" },
+                updatedByUserId: "flt-2",
                 comments: [
                     {
-                        id: "c-3-002",
+                        id: "t7m4n8c2",
                         userId: "u-003",
                         text: "I have started loading the lorry.",
                         timestamp: "2025-12-27T08:06:00Z"
@@ -117,12 +117,12 @@ const lorryTrackData = [
                 ]
             },
             {
-                status: LORRY_STATUSES_ENUM.LOADED,
+                status: COLLECTION_STATUSES.LOADED,
                 timestamp: "2025-12-27T09:00:00Z",
-                updatedBy: { userId: "u-003" },
+                updatedByUserId: "flt-3",
                 comments: [
                     {
-                        id: "c-3-003",
+                        id: "p3w9k6r4",
                         userId: "u-003",
                         text: "I have completed loading the lorry.",
                         timestamp: "2025-12-27T09:01:00Z"
@@ -133,22 +133,22 @@ const lorryTrackData = [
     },
 
     {
-        lorryId: "4",
-        regNum: "st56ghi",
-        materialName: MATERIAL_NAMES_ENUM.GLASS,
-        customerName: CUSTOMER_NAMES_ENUM.URM,
+        id: "4",
+        materialName: MATERIAL_NAMES.GLASS,
+        customerName: CUSTOMER_NAMES.URM,
         collectionRefNum: "gh012ij",
+        lorryRegNum: "st56ghi",
         checkedInAt: "2025-12-27T06:45:00Z",
         checkedOutAt: "2025-12-27T08:30:00Z",
-        currentStatus: LORRY_STATUSES_ENUM.CHECKED_OUT,
+        currentStatus: COLLECTION_STATUSES.CHECKED_OUT,
         statusHistory: [
             {
-                status: LORRY_STATUSES_ENUM.CHECKED_IN,
+                status: COLLECTION_STATUSES.CHECKED_IN,
                 timestamp: "2025-12-27T06:45:00Z",
-                updatedBy: { userId: "u-002" },
+                updatedByUserId: "wb-002",
                 comments: [
                     {
-                        id: "c-4-001",
+                        id: "k2x9c5m8",
                         userId: "u-002",
                         text: "Glass lorry checked in.",
                         timestamp: "2025-12-27T06:46:00Z"
@@ -156,12 +156,12 @@ const lorryTrackData = [
                 ]
             },
             {
-                status: LORRY_STATUSES_ENUM.LOADING,
+                status: COLLECTION_STATUSES.LOADING,
                 timestamp: "2025-12-27T07:00:00Z",
-                updatedBy: { userId: "u-004" },
+                updatedByUserId: "flt-1",
                 comments: [
                     {
-                        id: "c-4-002",
+                        id: "r6n8b9t4",
                         userId: "u-004",
                         text: "Loading glass containers.",
                         timestamp: "2025-12-27T07:01:00Z"
@@ -169,12 +169,12 @@ const lorryTrackData = [
                 ]
             },
             {
-                status: LORRY_STATUSES_ENUM.LOADED,
+                status: COLLECTION_STATUSES.LOADED,
                 timestamp: "2025-12-27T07:55:00Z",
-                updatedBy: { userId: "u-004" },
+                updatedByUserId: "flt-2",
                 comments: [
                     {
-                        id: "c-4-003",
+                        id: "m4k8p7x2",
                         userId: "u-004",
                         text: "Glass fully loaded.",
                         timestamp: "2025-12-27T07:56:00Z"
@@ -182,12 +182,12 @@ const lorryTrackData = [
                 ]
             },
             {
-                status: LORRY_STATUSES_ENUM.CHECKED_OUT,
+                status: COLLECTION_STATUSES.CHECKED_OUT,
                 timestamp: "2025-12-27T08:30:00Z",
-                updatedBy: { userId: "u-002" },
+                updatedByUserId: "wb-001",
                 comments: [
                     {
-                        id: "c-4-004",
+                        id: "v9c2w6r8",
                         userId: "u-002",
                         text: "Lorry checked out.",
                         timestamp: "2025-12-27T08:31:00Z"
@@ -198,22 +198,22 @@ const lorryTrackData = [
     },
 
     {
-        lorryId: "5",
-        regNum: "uv78jkl",
-        materialName: MATERIAL_NAMES_ENUM.STEEL_CANS,
-        customerName: CUSTOMER_NAMES_ENUM.UN_GLOBAL,
+        id: "5",
+        materialName: MATERIAL_NAMES.STEEL_CANS,
+        customerName: CUSTOMER_NAMES.UN_GLOBAL,
         collectionRefNum: "kl345mn",
+        lorryRegNum: "uv78jkl",
         checkedInAt: "2025-12-27T09:20:00Z",
         checkedOutAt: null,
-        currentStatus: LORRY_STATUSES_ENUM.CHECKED_IN,
+        currentStatus: COLLECTION_STATUSES.CHECKED_IN,
         statusHistory: [
             {
-                status: LORRY_STATUSES_ENUM.CHECKED_IN,
+                status: COLLECTION_STATUSES.CHECKED_IN,
                 timestamp: "2025-12-27T09:20:00Z",
-                updatedBy: { userId: "u-002" },
+                updatedByUserId: "wb-002",
                 comments: [
                     {
-                        id: "c-5-001",
+                        id: "x7m2k8b4",
                         userId: "u-002",
                         text: "Metal lorry checked in.",
                         timestamp: "2025-12-27T09:21:00Z"
@@ -224,23 +224,22 @@ const lorryTrackData = [
     },
 
     {
-        lorryId: "6",
-        regNum: "pz65pwo",
-        materialName: MATERIAL_NAMES_ENUM.MIXED_PAPER_GR1,
-        customerName: CUSTOMER_NAMES_ENUM.PEUTE,
+        id: "6",
+        materialName: MATERIAL_NAMES.MIXED_PAPER_GR1,
+        customerName: CUSTOMER_NAMES.PEUTE,
         collectionRefNum: "vg123sd",
+        lorryRegNum: "pz65pwo",
         checkedInAt: "2025-12-27T08:40:00Z",
         checkedOutAt: null,
-        currentStatus: LORRY_STATUSES_ENUM.CHECKED_IN,
+        currentStatus: COLLECTION_STATUSES.CHECKED_IN,
         statusHistory: [
             {
-                status: LORRY_STATUSES_ENUM.CHECKED_IN,
+                status: COLLECTION_STATUSES.CHECKED_IN,
                 timestamp: "2025-12-27T08:40:00Z",
-                updatedBy: { userId: "u-002" },
+                updatedByUserId: "wb-001",
                 comments: []
             }
         ]
     }
 ];
 
-module.exports = lorryTrackData;
