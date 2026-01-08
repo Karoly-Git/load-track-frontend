@@ -64,3 +64,26 @@ export const updateCollectionStatus = async ({
 
     return response.json();
 };
+
+export const addCommentUnderStatus = async ({ collectionId, statusKey, userId, comment }) => {
+    const response = await fetch(
+        `${API_URL}/collections/${collectionId}/status/${statusKey}/comment`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                userId, // REQUIRED
+                comment, // REQUIRED
+            }),
+        }
+    );
+
+    if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || "Failed to add comment");
+    }
+
+    return response.json();
+}
