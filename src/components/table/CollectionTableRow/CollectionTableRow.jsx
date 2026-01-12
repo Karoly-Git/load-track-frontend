@@ -47,7 +47,7 @@ export default function CollectionTableRow({ collection }) {
                         className="cell-btn material-name"
                         aria-label="Change material name"
                     >
-                        <div>{materialName}</div>
+                        <div>{materialName} {id}</div>
                     </button>
                     <div className="time-checked-in">
                         {formatTime(checkedInAt)}

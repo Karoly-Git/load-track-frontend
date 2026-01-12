@@ -41,7 +41,7 @@ export default function CollectionTable() {
 
                         {collectionsList.map((collection) => (
                             <CollectionTableRow
-                                key={collection.id + Math.random()}
+                                key={collection.id}
                                 collection={collection}
                             />
                         ))}

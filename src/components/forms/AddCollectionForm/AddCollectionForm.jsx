@@ -51,7 +51,7 @@ export default function AddCollectionForm({ onSubmit, onCancel }) {
                     </option>
 
                     {Object.entries(MATERIAL_NAMES).map(([key, value]) => (
-                        <option key={key + Math.random()} value={value}>
+                        <option key={key} value={value}>
                             {value}
                         </option>
                     ))}
@@ -70,7 +70,7 @@ export default function AddCollectionForm({ onSubmit, onCancel }) {
                     </option>
 
                     {Object.entries(CUSTOMER_NAMES).map(([key, value]) => (
-                        <option key={key + Math.random()} value={value}>
+                        <option key={key} value={value}>
                             {value}
                         </option>
                     ))}

@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import "../FormStyle.css";
 import Button from "../../ui/button/Button";
-import { addCommentToStatus } from "../../../state/collection/collectionSlice";
 
 export default function AddCommentForm({
     collectionId,
@@ -10,30 +8,14 @@ export default function AddCommentForm({
     userId,
     onCancel,
 }) {
-    const dispatch = useDispatch();
     const [text, setText] = useState("");
 
     async function handleSubmit(e) {
         e.preventDefault();
-
         if (!text.trim()) return;
-
-        //console.log(collectionId, statusKey, userId, text);
-
-        const result = dispatch(
-            addCommentToStatus({
-                collectionId,
-                statusKey,
-                userId,
-                text,
-            })
-        );
-
-        // Only reset + close if request succeeded
-        if (addCommentToStatus.fulfilled.match(result)) {
-            setText("");
-            onCancel();
-        }
+        setText("");
+        console.log(text)
+        onCancel();
     }
 
     return (
@@ -55,7 +37,7 @@ export default function AddCommentForm({
                 <Button
                     type="submit"
                     text="Add Comment"
-                    className="btn accept"
+                    className={`btn accept ${!text.trim() ? "disabled" : ""}`}
                 />
             </div>
         </form>
