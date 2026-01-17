@@ -222,9 +222,170 @@ const data = [
             }
         ]
     },
-
     {
         id: "6",
+        materialName: MATERIAL_NAMES.MIXED_PAPER_GR1,
+        customerName: CUSTOMER_NAMES.PEUTE,
+        collectionRefNum: "vg123sd",
+        lorryRegNum: "pz65pwo",
+        checkedInAt: "2025-12-27T08:40:00Z",
+        checkedOutAt: null,
+        currentStatus: COLLECTION_STATUSES.CHECKED_IN,
+        statusHistory: [
+            {
+                status: COLLECTION_STATUSES.CHECKED_IN,
+                timestamp: "2025-12-27T08:40:00Z",
+                updatedByUserId: "wb-001",
+                comments: []
+            }
+        ]
+    },
+    {
+        id: "7",
+        materialName: MATERIAL_NAMES.MIXED_PAPER_GR1,
+        customerName: CUSTOMER_NAMES.PEUTE,
+        collectionRefNum: "vg123sd",
+        lorryRegNum: "pz65pwo",
+        checkedInAt: "2025-12-27T08:40:00Z",
+        checkedOutAt: null,
+        currentStatus: COLLECTION_STATUSES.CHECKED_IN,
+        statusHistory: [
+            {
+                status: COLLECTION_STATUSES.CHECKED_IN,
+                timestamp: "2025-12-27T08:40:00Z",
+                updatedByUserId: "wb-001",
+                comments: []
+            }
+        ]
+    },
+    {
+        id: "8",
+        materialName: MATERIAL_NAMES.MIXED_PAPER_GR1,
+        customerName: CUSTOMER_NAMES.PEUTE,
+        collectionRefNum: "vg123sd",
+        lorryRegNum: "pz65pwo",
+        checkedInAt: "2025-12-27T08:40:00Z",
+        checkedOutAt: null,
+        currentStatus: COLLECTION_STATUSES.CHECKED_IN,
+        statusHistory: [
+            {
+                status: COLLECTION_STATUSES.CHECKED_IN,
+                timestamp: "2025-12-27T08:40:00Z",
+                updatedByUserId: "wb-001",
+                comments: []
+            }
+        ]
+    },
+    {
+        id: "9",
+        materialName: MATERIAL_NAMES.MIXED_PAPER_GR1,
+        customerName: CUSTOMER_NAMES.PEUTE,
+        collectionRefNum: "vg123sd",
+        lorryRegNum: "pz65pwo",
+        checkedInAt: "2025-12-27T08:40:00Z",
+        checkedOutAt: null,
+        currentStatus: COLLECTION_STATUSES.CHECKED_IN,
+        statusHistory: [
+            {
+                status: COLLECTION_STATUSES.CHECKED_IN,
+                timestamp: "2025-12-27T08:40:00Z",
+                updatedByUserId: "wb-001",
+                comments: []
+            }
+        ]
+    },
+    {
+        id: "10",
+        materialName: MATERIAL_NAMES.MIXED_PAPER_GR1,
+        customerName: CUSTOMER_NAMES.PEUTE,
+        collectionRefNum: "vg123sd",
+        lorryRegNum: "pz65pwo",
+        checkedInAt: "2025-12-27T08:40:00Z",
+        checkedOutAt: null,
+        currentStatus: COLLECTION_STATUSES.CHECKED_IN,
+        statusHistory: [
+            {
+                status: COLLECTION_STATUSES.CHECKED_IN,
+                timestamp: "2025-12-27T08:40:00Z",
+                updatedByUserId: "wb-001",
+                comments: []
+            }
+        ]
+    },
+    {
+        id: "11",
+        materialName: MATERIAL_NAMES.MIXED_PAPER_GR1,
+        customerName: CUSTOMER_NAMES.PEUTE,
+        collectionRefNum: "vg123sd",
+        lorryRegNum: "pz65pwo",
+        checkedInAt: "2025-12-27T08:40:00Z",
+        checkedOutAt: null,
+        currentStatus: COLLECTION_STATUSES.CHECKED_IN,
+        statusHistory: [
+            {
+                status: COLLECTION_STATUSES.CHECKED_IN,
+                timestamp: "2025-12-27T08:40:00Z",
+                updatedByUserId: "wb-001",
+                comments: []
+            }
+        ]
+    },
+    {
+        id: "12",
+        materialName: MATERIAL_NAMES.MIXED_PAPER_GR1,
+        customerName: CUSTOMER_NAMES.PEUTE,
+        collectionRefNum: "vg123sd",
+        lorryRegNum: "pz65pwo",
+        checkedInAt: "2025-12-27T08:40:00Z",
+        checkedOutAt: null,
+        currentStatus: COLLECTION_STATUSES.CHECKED_IN,
+        statusHistory: [
+            {
+                status: COLLECTION_STATUSES.CHECKED_IN,
+                timestamp: "2025-12-27T08:40:00Z",
+                updatedByUserId: "wb-001",
+                comments: []
+            }
+        ]
+    },
+    {
+        id: "13",
+        materialName: MATERIAL_NAMES.MIXED_PAPER_GR1,
+        customerName: CUSTOMER_NAMES.PEUTE,
+        collectionRefNum: "vg123sd",
+        lorryRegNum: "pz65pwo",
+        checkedInAt: "2025-12-27T08:40:00Z",
+        checkedOutAt: null,
+        currentStatus: COLLECTION_STATUSES.CHECKED_IN,
+        statusHistory: [
+            {
+                status: COLLECTION_STATUSES.CHECKED_IN,
+                timestamp: "2025-12-27T08:40:00Z",
+                updatedByUserId: "wb-001",
+                comments: []
+            }
+        ]
+    },
+    {
+        id: "14",
+        materialName: MATERIAL_NAMES.MIXED_PAPER_GR1,
+        customerName: CUSTOMER_NAMES.PEUTE,
+        collectionRefNum: "vg123sd",
+        lorryRegNum: "pz65pwo",
+        checkedInAt: "2025-12-27T08:40:00Z",
+        checkedOutAt: null,
+        currentStatus: COLLECTION_STATUSES.CHECKED_IN,
+        statusHistory: [
+            {
+                status: COLLECTION_STATUSES.CHECKED_IN,
+                timestamp: "2025-12-27T08:40:00Z",
+                updatedByUserId: "wb-001",
+                comments: []
+            }
+        ]
+    },
+    {
+        id: "15",
         materialName: MATERIAL_NAMES.MIXED_PAPER_GR1,
         customerName: CUSTOMER_NAMES.PEUTE,
         collectionRefNum: "vg123sd",
@@ -244,3 +405,5 @@ const data = [
 ];
 
 export default data;
+
+
