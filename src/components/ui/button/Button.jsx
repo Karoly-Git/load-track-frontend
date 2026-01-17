@@ -10,7 +10,8 @@ export default function Button({
         <button
             type={type}
             className={className}
-            onClick={onClick}>
+            onClick={onClick}
+        >
             {Icon && <Icon className="icon" />} {text}
         </button>
     );

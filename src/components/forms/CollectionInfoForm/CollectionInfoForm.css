@@ -164,7 +164,4 @@
 }
 .collection-info-form .status-entry.CHECKED_OUT::before {
   background: #d1d5db;
-}
-.collection-info-form .actions {
-  margin-bottom: 1rem;
 }/*# sourceMappingURL=CollectionInfoForm.css.map */

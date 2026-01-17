@@ -1,0 +1,38 @@
+$primary: #1e4e8c;
+$light: #ffffff;
+$danger: #c62828;
+$border: #e5e7eb;
+
+.spinner {
+    display: inline-block;
+
+    border-style: solid;
+    border-width: 4px;
+    border-color: $border;
+    border-top-color: $primary;
+    border-radius: 50%;
+
+    animation: spin 0.9s linear infinite;
+
+    &--inline {
+        vertical-align: middle;
+    }
+
+    &--primary {
+        border-top-color: $primary;
+    }
+
+    &--light {
+        border-top-color: $light;
+    }
+
+    &--danger {
+        border-top-color: $danger;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

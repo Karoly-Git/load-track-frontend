@@ -63,6 +63,15 @@
         }
     }
 
+    &.delete {
+        background: #a40000;
+        color: #fff;
+
+        &:hover {
+            background: darkred;
+        }
+    }
+
     &.disabled {
         background: #c4c4c4;
         color: #7a7a7a;

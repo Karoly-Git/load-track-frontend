@@ -33,6 +33,9 @@ export const deleteCollectionById = createAsyncThunk(
     "collection/deleteCollectionById",
     async (collectionId, { rejectWithValue }) => {
         try {
+            // ⏳ simulate slow API
+            await new Promise((resolve) => setTimeout(resolve, 3000));
+
             await deleteCollection(collectionId);
             return collectionId;
         } catch (error) {
@@ -60,6 +63,9 @@ export const updateCollectionStatusById = createAsyncThunk(
 
             return updatedCollection;
         } catch (error) {
+            if (error.response?.status === 404) {
+                return collectionId; // already deleted
+            }
             return rejectWithValue(error.message);
         }
     }
@@ -117,7 +123,7 @@ const collectionSlice = createSlice({
             .addCase(deleteCollectionById.fulfilled, (state, action) => {
                 state.loading = false;
                 state.collections = state.collections.filter(
-                    (collection) => collection.collectionId !== action.payload
+                    (collection) => collection.id !== action.payload
                 );
             })
             .addCase(deleteCollectionById.rejected, (state, action) => {

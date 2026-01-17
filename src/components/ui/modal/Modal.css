@@ -8,7 +8,8 @@
   z-index: 1000;
 }
 .modal-overlay .modal-container {
-  position: relative;
+  position: absolute;
+  top: 150px;
   background: #ffffff;
   border-radius: 14px;
   max-width: 500px;

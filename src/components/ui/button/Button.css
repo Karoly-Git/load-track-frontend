@@ -45,6 +45,13 @@
 .btn.accept:hover {
   background: #196533;
 }
+.btn.delete {
+  background: #a40000;
+  color: #fff;
+}
+.btn.delete:hover {
+  background: darkred;
+}
 .btn.disabled {
   background: #c4c4c4;
   color: #7a7a7a;

@@ -1,3 +1,4 @@
+import Spinner from "../spinner/Spinner";
 import "./LoadingState.css";
 
 export default function LoadingState({
@@ -6,7 +7,7 @@ export default function LoadingState({
 }) {
     return (
         <div className="loading-state">
-            <div className="spinner" />
+            <Spinner />
             <h2>{title}</h2>
             <p>{message}</p>
         </div>

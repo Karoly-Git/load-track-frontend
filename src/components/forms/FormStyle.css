@@ -3,28 +3,70 @@
   flex-direction: column;
   gap: 2rem;
   min-width: 280px;
-  /* Labels */
-  /* Inputs & textarea */
-  /* ---------- Actions ---------- */
+  /* ================= Header ================= */
+  /* ================= Identifier ================= */
+  /* ================= Actions ================= */
 }
-.form h2 {
-  margin: 0;
-  margin-bottom: 1rem;
-  font-size: 1.4rem;
-  font-weight: 550;
-  color: #222;
-}
-.form label {
+.form .form-header {
   display: flex;
   flex-direction: column;
+  gap: 0.75rem;
+  /* Shared form controls (kept generic) */
+}
+.form .form-header .warning-text {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  background-color: #fff4f4;
+  color: #a40000;
+  border: 1px solid #f5b5b5;
+}
+.form .form-header .warning-text.success {
+  background-color: #f1faf5;
+  color: #1b7f3c;
+  border-color: #b9e2c8;
+}
+.form .form-header .warning-text.error {
+  background-color: #fff4f4;
+  color: #a40000;
+  border-color: #f5b5b5;
+}
+.form .form-header .warning-text span {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.form .form-header .warning-text .icon {
+  flex-shrink: 0;
+  font-size: 1.25rem;
+}
+.form .form-header .warning-text .icon.success {
+  color: #1b7f3c;
+}
+.form .form-header .warning-text .icon.warning {
+  font-size: 1.6rem;
+}
+.form .form-header .auto-close-text {
+  font-size: 0.85rem;
+  color: #555;
+  margin-left: 0.25rem;
+}
+.form .form-header label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
   font-size: 0.85rem;
   font-weight: 500;
   color: #333;
-  gap: 0.3rem;
 }
-.form input,
-.form select,
-.form textarea {
+.form .form-header input,
+.form .form-header select,
+.form .form-header textarea {
   width: 100%;
   padding: 0.6rem 0.7rem;
   border-radius: 6px;
@@ -32,19 +74,42 @@
   font-size: 0.9rem;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
-.form input:focus,
-.form select:focus,
-.form textarea:focus {
+.form .form-header input:focus,
+.form .form-header select:focus,
+.form .form-header textarea:focus {
   outline: none;
   border-color: #143757;
   box-shadow: 0 0 0 2px rgba(20, 55, 87, 0.15);
 }
-.form textarea {
+.form .form-header textarea {
   resize: vertical;
   min-height: 3rem;
 }
+.form .identifier {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+}
+.form .identifier .identifier-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+.form .identifier .identifier-row .label {
+  font-weight: 600;
+  color: #444;
+}
+.form .identifier .identifier-row .value {
+  color: #222;
+  word-break: break-word;
+}
 .form .actions {
   display: flex;
+  gap: 1rem;
   justify-content: flex-end;
-  gap: 0.75rem;
 }/*# sourceMappingURL=FormStyle.css.map */
